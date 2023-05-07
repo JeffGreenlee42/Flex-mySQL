@@ -1,0 +1,59 @@
+_________________________________________________________
+Here I changed "host" to "hort" in line 7 of mysqlconnection.py
+_________________________________________________________
+
+File "/Users/jeffgreenlee/Documents/Flex-mySQL/first_flask_mysql/mysqlconnection.py", line 7, in __init__
+connection = pymysql.connect(hort = 'localhost',
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Connection.__init__() got an unexpected keyword argument 'hort'
+
+
+_________________________________________________________
+Here I changed "self.connection" to "self.connect" in line 15 of mysqlconnection.py
+_________________________________________________________
+
+File "/Users/jeffgreenlee/Documents/Flex-mySQL/first_flask_mysql/friend.py", line 17, in get_all
+results = connectToMySQL('first_flask').query_db(query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^Open an interactive python shell in this frame
+File "/Users/jeffgreenlee/Documents/Flex-mySQL/first_flask_mysql/mysqlconnection.py", line 18, in query_db
+with self.connection.cursor() as cursor:
+     ^^^^^^^^^^^^^^^
+AttributeError: 'MySQLConnection' object has no attribute 'connection'
+
+_________________________________________________________
+Here I changed "self" to "me" in function call line 17  of mysqlconnection.py
+_________________________________________________________
+
+File "/Users/jeffgreenlee/Documents/Flex-mySQL/first_flask_mysql/friend.py", line 17, in get_all
+results = connectToMySQL('first_flask').query_db(query)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/Users/jeffgreenlee/Documents/Flex-mySQL/first_flask_mysql/mysqlconnection.py", line 18, in query_db
+with self.connection.cursor() as cursor:
+     ^^^^
+NameError: name 'self' is not defined
+
+
+_________________________________________________________
+Here I changed charset value 'utf8mb4' to 'utc8mb4' in line 11  of mysqlconnection.py
+_________________________________________________________
+
+File "/Users/jeffgreenlee/Documents/Flex-mySQL/first_flask_mysql/mysqlconnection.py", line 7, in __init__
+connection = pymysql.connect(host = 'localhost',
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^Open an interactive python shell in this frame
+File "/Users/jeffgreenlee/.local/share/virtualenvs/first_flask_mysql-USZ_En0T/lib/python3.11/site-packages/pymysql/connections.py", line 310, in __init__
+self.encoding = charset_by_name(self.charset).encoding
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+_________________________________________________________
+Here I changed function call  'mogrify' to 'modify' in line 11  of mysqlconnection.py
+_________________________________________________________
+
+File "/Users/jeffgreenlee/Documents/Flex-mySQL/first_flask_mysql/server.py", line 8, in index
+friends = Friend.get_all()
+          ^^^^^^^^^^^^^^^^
+File "/Users/jeffgreenlee/Documents/Flex-mySQL/first_flask_mysql/friend.py", line 21, in get_all
+for friend in results:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'bool' object is not iterable

@@ -17,12 +17,13 @@ def create():
     #     "last_name":  request.form["last_name"],
     #     "occupation": request.form["occupation"]
     # }
-    Friend.save(request.form)
-    return redirect('/')
+    friend_id = Friend.save(request.form)
+    return redirect(f'/friend/show/{friend_id}')
 
 @app.route('/friend/show/<int:friend_id>')
 def show(friend_id):
     friend = Friend.get_one(friend_id)
+    print(friend.first_name)
     return render_template("show_friend.html", friend=friend)
 
 @app.route('/show_friends')

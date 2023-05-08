@@ -1,0 +1,42 @@
+
+/* body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} */
+
+.container {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: 90%;
+}
+
+h1 {
+    text-align: center;
+    /* margin: 100px, auto; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: rgb(5, 5, 4);
+}
+
+/* .d-flex {
+    flex-direction: row;
+    /* justify-content: center; */
+    /* align-items: center; */
+/* } */
+
+.btn-primary {
+    width: 100px;
+    height: 40px;
+    align-items: center;
+    align-self:flex-end;
+}
+
+.btn-showFriend {
+    background-color: blue;
+    height: 40px;
+    width: 170px;
+    margin-top: 40px;
+
+}

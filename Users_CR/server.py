@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, session
 # import the class from users.py
 from user import User
 app = Flask(__name__)
@@ -12,7 +12,10 @@ def index():
 @app.route('/user/create', methods=["POST"])
 def create():
     User.save(request.form)
-    return redirect('/show_users')
+    session["first_name"] = request.formp["first_name"]
+    session["last_name"] = request.form["last_name"]
+    session["email"] == request["email"]
+    return redirect(f'/show_users')
 
 # @app.route('/user/show/<int:user_id>')
 # def show(user_id):

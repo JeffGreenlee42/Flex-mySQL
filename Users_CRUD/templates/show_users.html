@@ -23,12 +23,14 @@
                     <td>{{ user.first_name }}</td>
                     <td>{{ user.last_name }}</td>
                     <td>{{ user.email }}</td>
+                    <td><a href="/user/show_one_user/{{user.id}}">Show</a></td>
                     <td><a href="/user/update/{{user.id}}">Update</a></td>
+                    <td><a href="/user/delete_user/{{user.id}}">Delete</a></td>
                     <!-- <hr> -->
                 </tr>
                     {% endfor %}
         </table>
-        <a href="/">Add a new User</a>
+        <a href="/add_new_user">Add a new User</a>
     </div>
 </body>
 </html>

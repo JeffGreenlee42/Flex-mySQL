@@ -5,6 +5,10 @@
     justify-content: center;
 } */
 
+.container-one-user {
+    background-color: coral;
+}
+
 .container {
     display: flex;
     justify-content: center;
@@ -16,8 +20,8 @@
 }
 
 .left_panel {
-    background-color: whitesmoke;
-    width: 300px;
+    background-color: rgb(158, 203, 74);
+    width: 350px;
     margin-right: 100px;
 }
 
@@ -58,4 +62,24 @@ h1 {
     width: 170px;
     margin-top: 40px;
 
+}
+
+.one_user_banner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btn-showUsers {
+    margin-left: 0;
+}
+
+.show_user_textArea {
+    line-height: 3em;
+    height: 200px;
+}
+
+.Edit-Button {
+    margin-top: 10px;
+    font-size: larger;
 }

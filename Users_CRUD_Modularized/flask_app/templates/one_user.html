@@ -19,7 +19,10 @@
             Last Name:  {{user.last_name}}
             Email: {{user.email}}
         </textarea>
-        <td><a class="Edit-Button" href="/user/update/{{user.id}}">Edit</a></td>
+        <div class="d-flex flex-row">
+            <td><a class="Edit-Button" href="/user/update/{{user.id}}">Edit</a></td>
+            <td><a class="Edit-Button" href="/user/delete_user/{{user.id}}">Delete</a></td>
+        </div>
     </div>
 </body>
 </html>

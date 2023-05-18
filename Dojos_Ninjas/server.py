@@ -1,4 +1,4 @@
-# from flask_app import app
+from flask_app import app
 from flask_app.controllers import controllers_dojo
 
 app.secret_key = "py is life"

@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    justify-content: start;
+    border: solid;
+    border-color: black;
+    border-width: 2px;
+    width: 40%;
+    height: 90%;
+}
+
+h1 {
+    text-align: center;
+    /* margin: 100px, auto; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: rgb(5, 5, 4);
+}

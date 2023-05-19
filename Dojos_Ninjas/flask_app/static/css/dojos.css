@@ -11,22 +11,26 @@
 
 .container {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     border: solid;
     border-color: black;
     border-width: 2px;
-    width: 30%;
+    width: 40%;
     height: 90%;
 }
 
-.left_panel {
+.new_dojo_left {
     background-color: rgb(158, 203, 74);
-    width: 350px;
+    width: 450px;
     margin-right: 100px;
+
+    .right_panel {
+        background-color: white;
+    }
 }
 
 h1 {
-    text-align: centert;
+    text-align: center;
     /* margin: 100px, auto; */
     margin-top: 20px;
     margin-bottom: 20px;
@@ -53,9 +57,7 @@ h1 {
     align-self:flex-end;
 }
 
-.right_panel {
-    background-color: white;
-}
+
 .btn-showFriend {
     background-color: blue;
     height: 40px;

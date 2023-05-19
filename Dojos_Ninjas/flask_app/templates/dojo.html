@@ -8,19 +8,26 @@
     <title>Dojos</title>
 </head>
 <body>
-    <div class="container" d-flex flex-col >
-        <H1>Edit Ninja</H1>
-        <div class="new_dojo_left">
-            <form action="/dojo/create" method="POST">
+    <div class="container" d-flex flex-row >
+        <div class="new_dojo_left d-flex flex-column">
+            <H1>New Dojo</H1>
+            <form action="/add_new_dojo" method="POST">
                 <div class="col">
-                    <div class="row">
+                    <div class="d-flex justify-content-start">
                         <label class="form-lable" for="name">Name:</label>
                         <input class="form-control" type="text" name="name">
                     </div>
                     <input  class="btn btn-primary" type="submit" value="Create">
                 </div>
+            </form>
         </div>
-
+        <div class="all_dojos_right d-flex flex-column">
+            <h1>All Dojos</h1>
+            <div class="container dojos_container">
+                {% for dojo in all_dojos %}
+                    <a href="dojo_show.html/{{int:dojo.id}}">{{dojo.name}}</a>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </body>

@@ -23,9 +23,10 @@
         </div>
         <div class="all_dojos_right d-flex flex-column">
             <h1>All Dojos</h1>
-            <div class="container dojos_container">
+            <div class="dojos_container">
                 {% for dojo in all_dojos %}
-                    <a href="dojo_show.html/{{int:dojo.id}}">{{dojo.name}}</a>
+                    <!-- <p>{{dojo.name}}</p> -->
+                    <a href="/dojos/get_one/{{dojo.id}}">{{dojo.name}}</a><br>
                 {% endfor %}
             </div>
         </div>

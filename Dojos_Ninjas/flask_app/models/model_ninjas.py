@@ -2,29 +2,15 @@ from flask_app.config.mysqlconnection import connectToMySQL
 
 db = "dojos_and_ninjas_schema"
 
-class Dojos:
+class Ninja:
     def __init__( self,data ):
         self.id = data["id"]
-        self.name = data["name"]
+        self.first_name = data["first_name"]
+        self.last_name = data["last_name"]
+        self.age = data["age"]
 
     @classmethod
-    def get_all(cls):
-        query = "SELECT * FROM dojos;"
-        results = connectToMySQL(db).query_db(query)
-        dojos = []
-        for dojo in results:
-            dojos.append(dojo)
-        return dojos
-
-    @classmethod
-    def save(cls, data):
-        query = """INSERT INTO dojos (name)
-                    VALUES (%(name)s )"""
-        results = connectToMySQL(db).query_db(query, data)
-        return results
-    
-    @classmethod
-    def get_one(cls, dojo_id):
+    def get_dojo_ninjas(cls, dojo_id):
         dojo_id = dojo_id
         print (f"dojo_id is: {dojo_id}")
         query = f"SELECT * FROM dojos JOIN ninjas ON dojos.id = ninjas.dojo_id WHERE dojos.id = {dojo_id};"
@@ -34,7 +20,7 @@ class Dojos:
         for ninja in results:
             ninja_data = {
                 'dojo_name' : ['name'],
-                'id' : ninja['ninjas.id'],
+                'id' : ninja['idNinjas'],
                 'first_name' : ninja['first_name'],
                 'last_name' : ninja['last_name'],
                 'age' : ninja['age'],
@@ -43,4 +29,3 @@ class Dojos:
             }
             ninjas.append(ninja_data)
         return ninjas
-

@@ -10,21 +10,11 @@
 } */
 
 .container {
-    display: flex;
-    justify-content: start;
-    /* border: solid;
-    border-color: black;
-    border-width: 2px; */
-    width: 30%;
-    height: 90%;
-}
-
-.dojos_container {
-    height: 90%;
-    width: 60%;
     border: solid;
-    border-color: darkorchid;
-    border-width: 1px;
+    border-color: black;
+    border-width: 2px;
+    width: 50%;
+    height: 90%;
 }
 
 .new_dojo_left {
@@ -40,7 +30,7 @@
 
 
 h1 {
-    text-align: left;
+    text-align: center;
     /* margin: 100px, auto; */
     margin-top: 20px;
     margin-bottom: 20px;
@@ -61,6 +51,3 @@ h1 {
     align-self:flex-end;
 }
 
-a {
-    margin: 20px;
-}

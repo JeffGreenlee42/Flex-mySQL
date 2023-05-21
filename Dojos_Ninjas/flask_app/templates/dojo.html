@@ -26,7 +26,7 @@
             <div class="dojos_container">
                 {% for dojo in all_dojos %}
                     <!-- <p>{{dojo.name}}</p> -->
-                    <a href="/dojos/get_one/{{dojo.id}}">{{dojo.name}}</a><br>
+                    <a href="/dojos/get_one/{{dojo.dojo_id}}">{{dojo.name}}</a><br>
                 {% endfor %}
             </div>
             <a href="/ninjas/new_ninja">Add Ninja</a>

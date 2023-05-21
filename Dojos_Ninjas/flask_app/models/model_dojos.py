@@ -9,7 +9,7 @@ class Dojo:
 
     @classmethod
     def get_all(cls):
-        query = "SELECT * FROM dojos;"
+        query = """SELECT name, id AS dojo_id FROM dojos;"""
         results = connectToMySQL(db).query_db(query)
         dojos = []
         for dojo in results:

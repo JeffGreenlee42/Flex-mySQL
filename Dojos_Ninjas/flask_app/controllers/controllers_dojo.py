@@ -24,4 +24,6 @@ def get_dojo_ninjas(dojo_id):
 
 @app.route("/ninjas/new_ninja")
 def new_ninja():
-    return render_template("new_ninja.html")
+    all_dojos = Dojo.get_all()
+    print(f"From new_ninja - all_dojos is: {all_dojos}")
+    return render_template("new_ninja.html", all_dojos = all_dojos)

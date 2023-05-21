@@ -13,7 +13,7 @@ class Ninja:
     def get_dojo_ninjas(cls, dojo_id):
         dojo_id = dojo_id
         print (f"dojo_id is: {dojo_id}")
-        query = f"SELECT * FROM dojos JOIN ninjas ON dojos.id = ninjas.dojo_id WHERE dojos.id = {dojo_id};"
+        query = f"SELECT * FROM dojos JOIN ninjas ON dojos.id = ninjas.dojos_id WHERE dojos.id = {dojo_id};"
         results = connectToMySQL(db).query_db(query)
         print(results)
         ninjas = []

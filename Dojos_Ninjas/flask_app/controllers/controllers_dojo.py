@@ -5,6 +5,10 @@ from flask_app.models.model_ninjas import Ninja
 
 @app.route("/")
 def index():
+    return redirect("/dojos")
+
+@app.route("/dojos")
+def dojos():
     all_dojos = Dojo.get_all()
     return render_template("dojo.html", all_dojos = all_dojos)
 

@@ -10,12 +10,12 @@
 <body>
     <div class="container" d-flex flex-col >
         <h1>Edit_Ninja</h1>
-        <form action="/save_updated_ninja/{{ninja.id}}" method="POST">
+        <form action="/save_updated_ninja/{{ninja.idNinjas}}" method="POST">
         <label for="dojo_id">Choose a Dojo:</label>
             <select class="form-select" aria-label="dojo_id" title="dojo_id" name="dojo_id" id="dojo_id">
                 {% for dojo in all_dojos %}
                      {% if dojo.dojo_id == ninja.dojo_id %}
-                        <option value={{dojo.dojo_id}} selected>{{dojo.name}}</option>
+                        <option value={{dojo.dojo_id}} selected>{{dojo_name}}</option>
                     {% else %}
                         <option value={{dojo.dojo_id}}>{{dojo.name}}</option>
                     {% endif %}
@@ -27,8 +27,8 @@
             <label for="last_name">Last Name</label>
             <input class="form-control" type="text" name="last_name" value="{{ninja.last_name}}">
             <label for="age">Age</label>
-            <input class="form-control" type="text" name="{{ninja.age}}">
-            <input  class="btn btn-primary" type="submit" value="Add Ninja">
+            <input class="form-control" type="text" name="age" value="{{ninja.age}}">
+            <input  class="btn btn-primary" type="submit" value="Update Ninja">
         </form>
     </div>
     </div>

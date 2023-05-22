@@ -26,7 +26,7 @@ class Dojo:
     @classmethod
     def get_one(cls, dojo_id):
         dojo_id = dojo_id
-        dojo_name = get_dojo_name(dojo_id)
+        dojo_name = cls.get_dojo_name(dojo_id)
         print (f"dojo_id is: {dojo_id}")
         # print (f"dojo_name is: {dojo_name}")
         query = f"SELECT * FROM dojos JOIN ninjas ON dojos.id = ninjas.dojo_id WHERE dojos.id = {dojo_id};"

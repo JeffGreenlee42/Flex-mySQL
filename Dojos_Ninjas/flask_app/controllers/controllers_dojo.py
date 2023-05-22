@@ -6,7 +6,6 @@ from flask_app.models.model_ninjas import Ninja
 @app.route("/")
 def index():
     all_dojos = Dojo.get_all()
-    print(f"Home Page: all_dojos is: {all_dojos}")
     return render_template("dojo.html", all_dojos = all_dojos)
 
 @app.route("/add_new_dojo", methods=["POST"])
@@ -17,42 +16,44 @@ def add_new_dojo():
 @app.route("/dojos/get_one/<int:dojo_id>")
 def get_dojo_ninjas(dojo_id):
     name = Dojo.get_dojo_name(dojo_id)
-    print(f"name is: {name}")
     dojo_name = name[0]['name']
-    print("dojo_name is: {dojo_name}")
     dojo_ninjas = Ninja.get_dojo_ninjas(dojo_id)
-    return render_template('dojo_show.html', dojo_ninjas = dojo_ninjas, dojo_name = dojo_name)
+    return render_template('dojo_show.html', dojo_ninjas = dojo_ninjas, dojo_name = dojo_name, dojo_id = dojo_id )
 
 @app.route("/ninjas/new_ninja")
 def new_ninja():
     all_dojos = Dojo.get_all()
-    print(f"From new_ninja - all_dojos is: {all_dojos}")
     return render_template("new_ninja.html", all_dojos = all_dojos)
 
 @app.route("/add_new_ninja", methods=["POST"])
 def add_new_ninja():
-    print("Entering /add_new_ninja!")
     results = Ninja.save(request.form)
-    print(request.form)
-    print("about to assign request.form['dojo_id']")
     dojo_id = request.form.get('dojo_id')
-    print(f"dojo_id is {dojo_id}")
     return redirect(f"/dojos/get_one/{dojo_id}")
 
 @app.route("/ninja/edit_ninja/<int:ninja_id>")
 def edit_ninja(ninja_id):
-    print(ninja_id)
     data = {
         "id" : ninja_id
     }
     all_dojos = Dojo.get_all()
-    ninja = Ninja.get_ninja(ninja_id)
-    print(f"from edit_ninja: ninja is: {ninja}")
-    print("About to open the page 'edit_ninja.html'")
-    return render_template("edit_ninja.html", ninja = ninja, all_dojos = all_dojos)
+    ninja = Ninja.get_ninja(data)
+    ninja = ninja[0]
+    dojo_id = ninja["dojo_id"]
+    dojo_name = Dojo.get_dojo_name(dojo_id)
+    dojo_name = dojo_name[0]['name']
+    return render_template("edit_ninja.html", ninja = ninja, all_dojos = all_dojos, dojo_name = dojo_name)
 
 @app.route("/save_updated_ninja/<int:ninja_id>", methods=["POST"])
 def save_updated_ninja(ninja_id):
+    ninja_id = {
+        "ninja_id": ninja_id
+    }
     dojo_id = request.form.get("dojo_id")
-    Ninja.update(request.form, ninja_id)
+    result = Ninja.update(request.form, ninja_id)
+    return redirect(f"/dojos/get_one/{dojo_id}")
+
+@app.route("/ninja/delete_ninja/<int:ninja_id>/<int:dojo_id>")
+def delete_ninja(ninja_id, dojo_id):
+    Ninja.delete(request.form, ninja_id)
     return redirect(f"/dojos/get_one/{dojo_id}")

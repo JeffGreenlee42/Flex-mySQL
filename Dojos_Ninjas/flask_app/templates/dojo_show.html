@@ -19,19 +19,23 @@
                     <th scope="col">Age</th>
                 </tr>
             </thead>
-            <body>
+            <tbody>
                 {% for ninja in dojo_ninjas %}
                 <tr>
                     <th scope="row">{{ninja.first_name}}</th>
                     <th scope="row">{{ninja.last_name}}</th>
                     <th scope="row">{{ninja.age}}</th>
                     <th scope="row"><a href="/ninja/edit_ninja/{{ninja.id}}">Edit</a></th>
-                    <th scope="row"><a href="/ninja/delete_ninja/{{ninja.id}}">Delete</a></th>
+                    <th scope="row"><a href="/ninja/delete_ninja/{{ninja.id}}/{{dojo_id}}">Delete</a></th>
                 </tr>
                 {% endfor %}
-                <a href="/">Home</a>
-            </body>
+            </tbody>      
        </table>
+       <div class="d-flex flex-row justify-content-between">
+            <a href="/">Home</a>
+            <a class="align-self-end" href="/ninjas/new_ninja">Add Ninja</a>
+       </div>
+
     </div>
 </body>
 </html>

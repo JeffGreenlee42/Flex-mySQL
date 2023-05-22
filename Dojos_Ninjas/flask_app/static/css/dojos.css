@@ -12,9 +12,9 @@
 .container {
     display: flex;
     justify-content: start;
-    /* border: solid;
+    border: solid;
     border-color: black;
-    border-width: 2px; */
+    border-width: 2px;
     width: 30%;
     height: 90%;
 }

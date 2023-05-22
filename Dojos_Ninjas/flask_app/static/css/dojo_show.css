@@ -16,3 +16,7 @@ h1 {
     margin-bottom: 20px;
     color: rgb(61, 37, 158);
 }
+
+.add_ninja {
+    justify-content: right;
+}

@@ -9,8 +9,8 @@
 </head>
 <body>
     <div class="container" d-flex flex-row >
-        <div class="new_dojo_left d-flex flex-column">
-            <H1>New Author</H1>
+        <div class="new_books_authors_left d-flex flex-column">
+            <H2>New Author</H2>
             <form action="/add_new_author" method="POST">
                 <div class="col">
                     <div class="d-flex justify-content-start">
@@ -21,9 +21,9 @@
                 </div>
             </form>
         </div>
-        <div class="all_dojos_right d-flex flex-column">
-            <h1>All Authors</h1>
-            <div class="dojos_container">
+        <div class="all_books_authors_right d-flex flex-column">
+            <h2>All Authors</h2>
+            <div class="books_authors_container">
                 {% for author in all_authors %}
                     <a href="/authors/author_favorites/{{author.id}}">{{author.name}}</a><br>
                 {% endfor %}

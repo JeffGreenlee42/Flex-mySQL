@@ -4,8 +4,12 @@
     border: solid;
     border-color: black;
     border-width: 2px;
-    width: 30%;
+    width: 750px;
     height: 90%;
+}
+
+.author_favorites_left {
+    width: 50%;
 }
 
 h1 {

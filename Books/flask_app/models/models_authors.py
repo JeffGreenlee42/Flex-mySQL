@@ -22,4 +22,12 @@ class Author:
                     VALUES (%(name)s)"""
         results = connectToMySQL(db).query_db(query, data)
         return results
+    
+    @classmethod
+    def get_author(cls, data):
+        query = """SELECT * FROM authors
+                    WHERE id = %(id)s
+                """
+        results = connectToMySQL(db).query_db(query, data)
+        return results
 

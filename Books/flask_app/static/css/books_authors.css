@@ -9,19 +9,23 @@
     background-color: coral;
 } */
 
+body {
+    font-family: Arial;
+}
+
 .container {
     display: flex;
     justify-content: start;
     border: solid;
     border-color: black;
     border-width: 2px;
-    width: 30%;
+    width: 650px;
     height: 90%;
 }
 
 .books_authors_container {
     height: 90%;
-    width: 60%;
+    width: 100%;
     border: solid;
     border-color: darkorchid;
     border-width: 1px;
@@ -39,7 +43,8 @@
     }
 
 
-h1 {
+h2 {
+    
     text-align: left;
     /* margin: 100px, auto; */
     margin-top: 20px;

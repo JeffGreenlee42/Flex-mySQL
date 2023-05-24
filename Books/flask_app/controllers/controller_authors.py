@@ -26,8 +26,10 @@ def add_new_book():
     result = Book.save(request.form)
     return redirect("/books")
 
-# @app.route("/author_favorites/<int:author_id")
-# def author_favorites(author_id):
-#     pass
+@app.route("/authors/author_favorites/<int:author_id>")
+def author_favorites(author_id):
+    author = Author.get_author(author_id)
+    author_name = author["name"]
+    return render_template("author_show.html", author_name = author_name)
 
 

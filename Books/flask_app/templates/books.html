@@ -10,7 +10,7 @@
 <body>
     <div class="container" d-flex flex-row >
         <div class="new_books_authors_left d-flex flex-column">
-            <H1>New Books</H1>
+            <H2>New Book</H2>
             <form action="/add_new_book" method="POST">
                 <div class="col">
                     <div class="d-flex flex-column">
@@ -28,7 +28,7 @@
             </form>
         </div>
         <div class="all_books_authors_right d-flex flex-column">
-            <h1>All Books</h1>
+            <h2>All Books</h2>
             <div class="books_authors_container">
                 {% for book in all_books %}
                     <a href="/authors/author_favorites/{{book.id}}">{{book.title}}</a><br>

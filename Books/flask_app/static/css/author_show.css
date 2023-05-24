@@ -1,0 +1,22 @@
+.container {
+    /* display: flex;
+    justify-content: center; */
+    border: solid;
+    border-color: black;
+    border-width: 2px;
+    width: 30%;
+    height: 90%;
+}
+
+h1 {
+    justify-content: center;
+    text-align: center;
+    /* margin: 100px, auto; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: rgb(61, 37, 158);
+}
+
+.add_ninja {
+    justify-content: right;
+}

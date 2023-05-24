@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dojo_show.css') }}">
+    <title>Dojo_Show</title>
+</head>
+<body>
+    <div class="container" d-flex flex-col>
+        <h1>{{dojo_name}} Ninjas</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ninja in dojo_ninjas %}
+                <tr>
+                    <th scope="row">{{ninja.first_name}}</th>
+                    <th scope="row">{{ninja.last_name}}</th>
+                    <th scope="row">{{ninja.age}}</th>
+                    <th scope="row"><a href="/ninja/edit_ninja/{{ninja.id}}">Edit</a></th>
+                    <th scope="row"><a href="/ninja/delete_ninja/{{ninja.id}}/{{dojo_id}}">Delete</a></th>
+                </tr>
+                {% endfor %}
+            </tbody>      
+       </table>
+       <div class="d-flex flex-row justify-content-between">
+            <a href="/dojos">Home</a>
+            <a class="align-self-end" href="/ninjas/new_ninja">Add Ninja</a>
+       </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/author_show.css') }}">
+    <title>Authors</title>
+</head>
+<body>
+    <div class="container" d-flex flex-row >
+        <div class="new_dojo_left d-flex flex-column">
+            <H1>New Author</H1>
+            <form action="/add_new_author" method="POST">
+                <div class="col">
+                    <div class="d-flex justify-content-start">
+                        <label class="form-lable" for="name">Name:</label>
+                        <input class="form-control" type="text" name="name">
+                    </div>
+                    <input  class="btn btn-primary" type="submit" value="Create">
+                </div>
+            </form>
+        </div>
+        <div class="all_dojos_right d-flex flex-column">
+            <h1>All Authors</h1>
+            <div class="dojos_container">
+                {% for author in all_authors %}
+                    <a href="/authors/get_one_author/{{author.id}}">{{author.name}}</a><br>
+                {% endfor %}
+            </div>
+            <a href="/books/new_book">Add Book</a>
+        </div>
+    </div>
+</body>
+</html>

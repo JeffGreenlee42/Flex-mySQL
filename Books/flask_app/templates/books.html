@@ -31,7 +31,7 @@
             <h2>All Books</h2>
             <div class="books_authors_container">
                 {% for book in all_books %}
-                    <a href="/authors/author_favorites/{{book.id}}">{{book.title}}</a><br>
+                    <a href="/book/authors_pick/{{book.id}}">{{book.title}}</a><br>
                 {% endfor %}
             </div>
             <a href="/authors">Home</a>

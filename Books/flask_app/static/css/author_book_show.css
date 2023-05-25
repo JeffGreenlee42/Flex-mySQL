@@ -4,15 +4,30 @@
     border: solid;
     border-color: black;
     border-width: 2px;
-    width: 750px;
+    width: 900px;
     height: 90%;
+}
+
+.author_list {
+    margin: 0;
+    margin-left: 20px;
 }
 
 .author_favorites_left {
     width: 50%;
+    /* margin-right: 10px; */
+    text-align: center;
 }
 
-h1 {
+.home {
+    margin-top: 20px;
+}
+
+.add_favorites_right {
+    width: 50%
+}
+
+h2 {
     justify-content: center;
     text-align: center;
     /* margin: 100px, auto; */
@@ -21,6 +36,19 @@ h1 {
     color: rgb(61, 37, 158);
 }
 
-.add_ninja {
-    justify-content: right;
+.form-control {
+    width: 200px;
+}
+
+.book_select {
+    margin-left: 20px;
+}
+
+.form-select {
+    width: 200px;
+}
+
+.btn-primary {
+    margin: 20px 10px;
+    /* align-self: flex-end; */
 }

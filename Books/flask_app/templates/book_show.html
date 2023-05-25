@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/author_book_show.css') }}">
+    <title>Book</title>
+</head>
+<body>
+    <div class="container d-flex flex-row">
+        <div class="author_favorites_left d-flex flex-column">
+            <H2>Title: {{book_title}}</H2>
+                {% for author in picked_by_authors %}
+                    <p class="author_list">{{author.name}}</p>
+                {% endfor %}
+            <a class="home" href="/authors">Home</a>
+        </div>
+        <div class="add_favorites_right d-flex flex-column">
+            <h2>Add Book's favorite</h2>
+            <form action="/book/add_author_pick/{{book_id}}" method="POST">
+                <div class="d-flex flex-row">
+                    <label class="form-label" for="author_id">Author:</label>
+                    <div class="book_select">
+                        <select class="form-select" aria-label="author_id" title="author_id" name="author_id" id="author_id">
+                            {% for author in all_authors %}
+                                <option value={{author.id}}>{{author.name}}</option>
+                            {% endfor %}
+                        </select>
+                        <input  class="btn btn-primary" type="submit" value="Add">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

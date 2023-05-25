@@ -1,4 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask_app.models import models_authors
+
 
 db = "books_schema"
 
@@ -24,5 +26,21 @@ class Book:
         results = connectToMySQL(db).query_db(query, data)
         return results
 
+    @classmethod
+    def get_book(cls, data):
+        # print(f"get_book data is {data}")
+        query = """SELECT * FROM books
+                    WHERE id = %(id)s
+                """
+        results = connectToMySQL(db).query_db(query, data)
+        # print(f"From get_author - results = {results}")
+        return results
 
-
+    @classmethod
+    def get_authors_selected_book(cls, book_id):
+        print(f"from get_authors_slected_book: book_id is {book_id}")
+        query = """SELECT * FROM favorites
+                    JOIN authors ON favorites.author_id = authors.id
+                    WHERE book_id = %(id)s"""
+        results = connectToMySQL(db).query_db(query, book_id)
+        return results

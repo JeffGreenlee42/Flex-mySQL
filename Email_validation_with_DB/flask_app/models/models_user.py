@@ -14,6 +14,21 @@ class User:
         self.email = data['email']
 
     @staticmethod
+    def is_duplicate_email(email):
+        # email = {
+        #     "email": email
+        # }
+        is_duplicate = False
+        query = f"SELECT * FROM users where email = '{email}'"
+        result = connectToMySQL(db).query_db(query)
+        result_count = len(result)
+        if len(result) > 0:
+            flash("Email already exists! please choose another!")
+            is_duplicate = True
+        return is_duplicate
+
+
+    @staticmethod
     def validate_user(user):
         valid = True
         if len(user['first_name']) < 3:
@@ -28,6 +43,7 @@ class User:
             valid = False
         return valid
 
+ 
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM users;"
@@ -45,17 +61,15 @@ class User:
     def get_one(cls, data):
         query  = """SELECT * FROM users WHERE id = %(id)s"""
         results = connectToMySQL(db).query_db(query, data)
-        print(f"Results is: {results}")
-        return cls(results[0])
+        return (results[0])
 
+ 
     # create a new record in the database
     @classmethod
     def save(cls, data):
         query = """INSERT INTO users (first_name, last_name, email)
                     VALUES (%(first_name)s, %(last_name)s, %(email)s )"""
-        #data is a dictionary that will be passed in from server.py
         result = connectToMySQL(db).query_db(query, data)
-        print(result)
         return result
 
     @classmethod

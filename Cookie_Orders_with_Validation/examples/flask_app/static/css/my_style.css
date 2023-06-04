@@ -1,0 +1,85 @@
+
+/* body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} */
+
+.container-one-user {
+    background-color: coral;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    border: solid;
+    border-color: black;
+    border-width: 2px;
+    width: 30%;
+    height: 90%;
+}
+
+.left_panel {
+    background-color: rgb(158, 203, 74);
+    width: 350px;
+    margin-right: 100px;
+}
+
+h1 {
+    text-align: left;
+    /* margin: 100px, auto; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: rgb(5, 5, 4);
+}
+
+.form-control {
+    width: 25ch;
+    margin-left: 10px;
+    margin-bottom: 6px;
+}
+
+/* .d-flex {
+    flex-direction: row;
+    /* justify-content: center; */
+    /* align-items: center; */
+/* } */
+
+.btn-primary {
+    width: 100px;
+    margin: 20px 10px;
+    height: 40px;
+    align-items: center;
+    align-self:flex-end;
+}
+
+.right_panel {
+    background-color: white;
+}
+.btn-showFriend {
+    background-color: blue;
+    height: 40px;
+    width: 170px;
+    margin-top: 40px;
+
+}
+
+.one_user_banner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btn-showUsers {
+    margin-left: 0;
+}
+
+.show_user_textArea {
+    line-height: 3em;
+    height: 200px;
+}
+
+.Edit-Button {
+    margin: 10px;
+    font-size: larger;
+}

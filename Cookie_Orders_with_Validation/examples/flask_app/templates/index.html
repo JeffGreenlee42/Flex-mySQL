@@ -14,28 +14,34 @@
         <div class="left_panel d-flex flex-column">
             <h1>Add User</h1>
             <form action="/user/create" method="POST">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <ul class=flashes>
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
                 <div class="col">
                     <div class="row">
                         <label class="form-lable" for="first_name">First Name:</label>
-                        <input class="form-control" type="text" name="first_name">
+                        <input class="form-control" title="email" type="text" name="first_name" value="{{first_name}}">
                     </div>
                     <div class="row">
                         <label class="form-lable"for="last_name">Last Name:</label>
-                        <input class="form-control" type="text" name="last_name">
+                        <input class="form-control" title="email" type="text" name="last_name" value="{{last_name}}">
                     </div>
                     <div class="row">
                         <label class="form-lable" for="email" >Email:</label>
-                        <input class="form-control" type="text" name="email">
+                        <input class="form-control" title="email" type="text" name="email" value={{email}}>
                     </div>
                     <input  class="btn btn-primary" type="submit" value="Create">
                 </div>
         </div>
-        <div class="right_panel">
-            <div class="row">
+        <div class="right_panel d-flex flex-column">
                 <a class="btn-showUsers btn-primary" href="/show_users">Home</a>
-            </div>
         </form> 
-
         </div>
     </div>
 </body>

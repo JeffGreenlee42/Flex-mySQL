@@ -13,7 +13,7 @@
     <div class="container d-flex flex-column">
         <div class="banner d-flex flex-row justify-content-between">
             <h3>All Orders:</h3>
-            <a class="new_order" href="/cookie_order/new_order">+ New Order</a>
+            <a class="new_order" href="/cookie_orders/new_order">+ New Order</a>
         </div>
         <div class="cookie_orders d-flex flex-column justify-content-start">
             <table class="table table-striped">
@@ -25,6 +25,16 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
+                <tbody>
+                    {% for order in cookie_orders %}
+                    <tr>
+                        <td>{{order.customer_name}}</td>
+                        <td>{{order.cookie_type}}</td>
+                        <td>{{order.number_of_boxes}}</td>
+                        <td><a href="/cookie_orders/get_order/{{order.id}}">edit</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
             </table>
         </div>
     </div>

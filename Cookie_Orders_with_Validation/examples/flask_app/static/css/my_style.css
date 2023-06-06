@@ -12,17 +12,17 @@
 .container {
     display: flex;
     justify-content: center;
+    background-color: rgb(158, 203, 74);
     border: solid;
     border-color: black;
     border-width: 2px;
-    width: 30%;
+    width: 575px;
     height: 90%;
 }
 
 .left_panel {
-    background-color: rgb(158, 203, 74);
     width: 350px;
-    margin-right: 100px;
+    margin-right: 30px;
 }
 
 h1 {
@@ -47,21 +47,22 @@ h1 {
 
 .btn-primary {
     width: 100px;
-    margin: 20px 10px;
+    margin: 20px 0 10px 0;
     height: 40px;
     align-items: center;
-    align-self:flex-end;
+    /* align-self:flex-end; */
 }
 
 .right_panel {
-    background-color: white;
+    /* border: solid; */
+    /* border-width: 1px; */
+    width: 50%;
 }
 .btn-showFriend {
     background-color: blue;
     height: 40px;
+    margin: 40px;
     width: 170px;
-    margin-top: 40px;
-
 }
 
 .one_user_banner {
@@ -71,7 +72,11 @@ h1 {
 }
 
 .btn-showUsers {
-    margin-left: 0;
+    margin: 75px auto;
+    padding: auto auto;
+    padding-top: 7px;;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .show_user_textArea {

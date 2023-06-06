@@ -16,9 +16,15 @@ def add_new_user():
 
 @app.route('/user/create', methods=["POST"])
 def create():
+    first_name = request.form['first_name']
+    last_name = request.form['last_name']
+    email = request.form['email']
+    if not User.validate_user(request.form):
+        return render_template('index.html', first_name = first_name, last_name = last_name, email = email)
+    if User.is_duplicate_email(email):
+        return render_template('index.html', first_name = first_name, last_name = last_name, email = email)
+
     user_id = User.save(request.form)
-    # return redirect(f'/show_users')
-    # print(f"The passed user ID from addUser is: {user}")
     return redirect(f'/user/show_one_user/{user_id}')
 
 # @app.route('/user/create', methods=["POST"])
@@ -42,19 +48,24 @@ def show_one_user(user_id):
 
 @app.route('/user/update/<int:user_id>')
 def update_user(user_id):
-    # print(f"at line 27 user_id is {user_id}")
+
     data = {
         'id': user_id
     }
     user = User.get_one(data)
-    return render_template('update.html', user = user)
+    first_name = user["first_name"]
+    last_name = user["last_name"]
+    email = user["email"]
+    return render_template('update.html', user_id = data["id"], first_name = first_name, last_name = last_name, email = email)
 
 
 @app.route('/user/save_updated_user/<int:user_id>', methods=['POST'])
 def save_updated_user(user_id):
-    # data = {
-    #     'id': user_id
-    # }
+    if not User.validate_user(request.form):
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        email = request.form['email']
+        return render_template("update.html", user_id = user_id, first_name = first_name, last_name = last_name, email = email)
     User.update(request.form, user_id)
     return redirect("/show_users")
 

@@ -1,5 +1,7 @@
 # import the function that will return an instance of a connection
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask import flash
+import re
 
 db = "users"
 
@@ -11,8 +13,37 @@ class User:
         self.last_name = data['last_name']
         self.email = data['email']
 
-    # Now we use class methods to query our database
+    @staticmethod
+    def is_duplicate_email(email):
+        # email = {
+        #     "email": email
+        # }
+        is_duplicate = False
+        query = f"SELECT * FROM users where email = '{email}'"
+        result = connectToMySQL(db).query_db(query)
+        result_count = len(result)
+        if len(result) > 0:
+            flash("Email already exists! please choose another!")
+            is_duplicate = True
+        return is_duplicate
 
+
+    @staticmethod
+    def validate_user(user):
+        valid = True
+        if len(user['first_name']) < 3:
+            flash("Name must be greater than 3 characters")
+            valid = False
+        if len(user['last_name']) < 3:
+            flash("Name must be greater than 3 characters")
+            valid = False
+        EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+        if not EMAIL_REGEX.match(user['email']):
+            flash("invalid email address!")
+            valid = False
+        return valid
+
+ 
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM users;"
@@ -30,17 +61,15 @@ class User:
     def get_one(cls, data):
         query  = """SELECT * FROM users WHERE id = %(id)s"""
         results = connectToMySQL(db).query_db(query, data)
-        print(f"Results is: {results}")
-        return cls(results[0])
+        return (results[0])
 
+ 
     # create a new record in the database
     @classmethod
     def save(cls, data):
         query = """INSERT INTO users (first_name, last_name, email)
                     VALUES (%(first_name)s, %(last_name)s, %(email)s )"""
-        #data is a dictionary that will be passed in from server.py
         result = connectToMySQL(db).query_db(query, data)
-        print(result)
         return result
 
     @classmethod

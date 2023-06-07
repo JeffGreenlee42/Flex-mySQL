@@ -21,11 +21,23 @@ def create():
     user_id = Cookie_order.save(request.form)
     return redirect("/cookie_orders")
     
-app.route("/cookie_orders/get_order/<int:order_id>")
+@app.route('/cookie_orders/get_order/<int:order_id>')
 def get_order(order_id):
     data = {
         "id": order_id
     }
     order = Cookie_order.get_order(data)
-    print("next line is rendering change_order.html")
-    return render_template("change_order.html", data)
+    customer_name = order['customer_name']
+    cookie_type = order['cookie_type']
+    number_of_boxes = order['number_of_boxes']
+    return render_template('change_order.html', order_id = order_id, customer_name = customer_name, cookie_type = cookie_type, number_of_boxes = number_of_boxes)
+
+@app.route('/cookie_orders/change_order/<int:order_id>', methods=["POST"])
+def change_order(order_id):
+    if not Cookie_order.validate_order(request.form):
+        customer_name = request.form['customer_name']
+        cookie_type = request.form['cookie_type']
+        number_of_boxes = request.form['number_of_boxes']
+        return render_template('change_order.html', order_id = order_id, customer_name = customer_name, cookie_type = cookie_type, number_of_boxes = number_of_boxes)
+    Cookie_order.change_order(request.form, order_id)
+    return redirect('/cookie_orders')

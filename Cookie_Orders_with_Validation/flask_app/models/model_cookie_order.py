@@ -36,10 +36,16 @@ class Cookie_order:
                     VALUES(%(customer_name)s, %(cookie_type)s, %(number_of_boxes)s)"""
         result = connectToMySQL(db).query_db(query, data)
         return result
-    
+
     @classmethod
-    def get_order(cls, order_id):
-        query = """SELECT * from cookie_orders
-                WHERE id = %(order_id)s"""
-        result = connectToMySQL(db).query_db(query, order_id)
+    def get_order(cls, data):
+        query = """SELECT * from cookie_orders WHERE id = %(id)s"""
+        result = connectToMySQL(db).query_db(query, data)
         return result[0]
+
+    @classmethod
+    def change_order(cls, form_data, order_id):
+        query = f"UPDATE cookie_orders SET customer_name = %(customer_name)s, cookie_type = %(cookie_type)s, number_of_boxes = %(number_of_boxes)s WHERE id = {order_id}"
+        return connectToMySQL(db).query_db(query, form_data)
+   
+

@@ -26,8 +26,9 @@
             {% endwith %}
         </div>
         <div class="order_form d-flex flex-column justify-content-start">
-            <form action="/cookie_orders/update" method="POST">
+            <form action="/cookie_orders/change_order/{{order_id}}" method="POST">
                 <div class="entry-fields d-flex flex-column">
+                    <input type="hidden" name="id" value="{{order_id}}">
                     <div class="form-entry d-flex flex-row justify-content-between">
                         <label class="form-lable" for="customer_name">Customer Name:</label>
                         <input class="form-control" type="text" name="customer_name" value="{{customer_name}}">

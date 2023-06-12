@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/my_style.css') }}">
+    <title>Change_Order</title>
+</head>
+<body>
+    <div class="container d-flex flex-column">
+        <div class="banner d-flex flex-row justify-content-between">
+            <h1>Change Order:</h1>
+            <a class="new_order" href="/cookie_orders">Back to Purchases</a>
+        </div>
+        <div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class=flashes>
+                    {% for message in messages %}
+                    <li class="error_message">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
+        <div class="order_form d-flex flex-column justify-content-start">
+            <form action="/cookie_orders/change_order/{{order_id}}" method="POST">
+                <div class="entry-fields d-flex flex-column">
+                    <input type="hidden" name="id" value="{{order_id}}">
+                    <div class="form-entry d-flex flex-row justify-content-between">
+                        <label class="form-lable" for="customer_name">Customer Name:</label>
+                        <input class="form-control" type="text" name="customer_name" value="{{customer_name}}">
+                    </div>
+                    <div class="form-entry d-flex flex-row justify-content-between">
+                        <label class="form-lable"for="cookie_type">Cookie Type:</label>
+                        <input class="form-control" type="text" name="cookie_type" value="{{cookie_type}}">
+                    </div>
+                    <div class="form-entry num-boxes d-flex flex-row justify-content-between">
+                        <label class="form-lable" for="number_of_boxes" >Number of Boxes:</label>
+                        <input class="form-control" type="text" name="number_of_boxes" value="{{number_of_boxes}}">
+                    </div>
+                    <div class="d-flex flex-row justify-content-end">
+                        <input  class="btn btn-primary" type="submit" value="Log">
+                    </div>
+                </div>
+            </form>
+        </div>
+</body>
+</html>

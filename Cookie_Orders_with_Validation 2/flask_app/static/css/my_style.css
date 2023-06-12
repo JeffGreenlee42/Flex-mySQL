@@ -1,0 +1,69 @@
+
+
+.container {
+    /* display: flex; */
+    justify-content:left;
+    width: 100%;
+    height: 90%;
+}
+
+.banner {
+    /* background-color: rgb(158, 203, 74); */
+    width: 100%;
+}
+
+.error_message {
+    color: red;
+}
+
+h1 {
+    text-align:start;
+    /* margin: 100px, auto; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 100px;
+    color: rgb(5, 5, 4);
+}
+
+.cookie_orders {
+    width: 100%;
+}
+
+.form-control {
+    width: 300px;
+    margin-left: 10px;
+    margin-bottom: 6px;
+}
+
+
+.entry-fields {
+    width: 85%;
+}
+.order_form {
+    width: 50%;
+}
+
+.form-lable {
+    width: 250px;
+    margin-right: 2px;
+}
+
+.form-control {
+    width: 40ch;
+    border-width: 2px;
+    border-color: black;
+}
+
+.form-entry {
+    width: 55ch;
+    margin-bottom: 10px;
+}
+
+.num-boxes {
+    width: auto;
+    border-color: black;
+}
+
+.btn-primary {
+    width: 10ch;
+}

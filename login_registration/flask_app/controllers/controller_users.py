@@ -1,5 +1,5 @@
 from flask_app import app
-from flask import Flask, render_template, redirect, request, session
+from flask import Flask, render_template, redirect, request, session, flash
 from flask_app.models.model_user import User
 from flask_bcrypt import Bcrypt
 
@@ -20,18 +20,22 @@ def register():
     session['first_name'] = request.form['first_name']
     session['last_name'] = request.form['last_name']
     session['email'] = request.form['email']
-    if not User.validate_user(request.form):
-        return redirect("/")
-    print(f"request.form['password'] is {request.form['password']}")
-    pw_hash = bcrypt.generate_password_hash(request.form['password'])
     data = {
         'first_name': request.form['first_name'],
         'last_name': request.form['last_name'],
         'email': request.form['email'],
-        'password': pw_hash
+        'password': request.form['password'],
+        'confirm_password': request.form['confirm_passowrd']
     }
-    User.add_user(data)
-    return redirect("/dashboard")
+    valid = User.validate_user(data)
+    if valid:
+        pw_hash = bcrypt.generate_password_hash(request.form['password'])
+        data['pw_hash'] = pw_hash
+        user = User.add_user(data)
+        session['user_id'] = user['id']
+        print("The user has been added to the DB!")
+        return redirect("/dashboard")
+    return redirect("/")
 
 @app.route("/dashboard")
 def dashboard():
@@ -39,16 +43,19 @@ def dashboard():
 
 @app.route("/login", methods=["POST"])
 def login():
-    session['login_email'] = request.form['login_email']
-    data = {
-        'email': request.form['login_email'],
-        'password': request.form['login_password']
-    }
     print("We are in route Login")
-    user_in_db = User.get_by_email(data)
-    if not user_in_db:
-        return redirect("/")
-    session['user_id'] = user_in_db.id
+    if 'user_id' not in session:
+        return redirect('/')
+    user = User.get_by_email(request.form)
+    if not user:
+        flash("Invalid email or Password", "login")
+        return redirect('/')
+    # for re-populating email field if login fails
+    session['login_email'] = request.form['login_email']
+    if not bcrypt.generate_password_hash(user.password, request.form['password']):
+        flash("Invalid email or Password", "login")
+        return redirect('/')
+    session['user_id'] = user.id
     return redirect("/dashboard")
 
 @app.route("/logout")

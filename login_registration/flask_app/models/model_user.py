@@ -53,7 +53,7 @@ class User:
         # pw_hash = bcrypt.generate_password_hash(data['password'])
         # print(f"in add_user: pw_hash is:: {pw_hash}/n")
         query = """INSERT INTO users (first_name, last_name, email, password) 
-                   VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s)"""
+                   VALUES (%(first_name)s, %(last_name)s, %(email)s, %(pw_hash)s)"""
         result = connectToMySQL(db).query_db(query, data)
         return result
 
@@ -62,13 +62,5 @@ class User:
         query = "SELECT * FROM users where email = %(email)s"
         result = connectToMySQL(db).query_db(query, data)
         if not result:
-            flash("invalid email/Password", "login")
-            return False
-        pw_hash = bcrypt.generate_password_hash(data['password'])
-        print(f"data['password'] is: {data['password']}")
-        print(f"pw_hash is: {pw_hash}")
-        print(f"result is: {result}")
-        if not bcrypt.check_password_hash(result[0]['password'], pw_hash):
-            flash("invalid email/Password", "login")
             return False
         return cls[result[0]]

@@ -25,7 +25,7 @@ def register():
         'last_name': request.form['last_name'],
         'email': request.form['email'],
         'password': request.form['password'],
-        'confirm_password': request.form['confirm_passowrd']
+        'confirm_password': request.form['password_confirmation']
     }
     valid = User.validate_user(data)
     if valid:

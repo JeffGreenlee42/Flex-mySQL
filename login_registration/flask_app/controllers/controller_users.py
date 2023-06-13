@@ -25,15 +25,14 @@ def register():
         'last_name': request.form['last_name'],
         'email': request.form['email'],
         'password': request.form['password'],
-        'confirm_password': request.form['password_confirmation']
+        'password_confirmation': request.form['password_confirmation']
     }
     valid = User.validate_user(data)
     if valid:
         pw_hash = bcrypt.generate_password_hash(request.form['password'])
         data['pw_hash'] = pw_hash
         user = User.add_user(data)
-        session['user_id'] = user['id']
-        print("The user has been added to the DB!")
+        session['user_id'] = user
         return redirect("/dashboard")
     return redirect("/")
 
@@ -43,7 +42,6 @@ def dashboard():
 
 @app.route("/login", methods=["POST"])
 def login():
-    print("We are in route Login")
     if 'user_id' not in session:
         return redirect('/')
     user = User.get_by_email(request.form)
@@ -51,11 +49,13 @@ def login():
         flash("Invalid email or Password", "login")
         return redirect('/')
     # for re-populating email field if login fails
-    session['login_email'] = request.form['login_email']
-    if not bcrypt.generate_password_hash(user.password, request.form['password']):
+    if not bcrypt.check_password_hash(user.password, request.form['login_password']):
         flash("Invalid email or Password", "login")
         return redirect('/')
     session['user_id'] = user.id
+    session['first_name'] = user.first_name
+    session['last_name'] = user.last_name
+    session['login_email'] = user.email
     return redirect("/dashboard")
 
 @app.route("/logout")

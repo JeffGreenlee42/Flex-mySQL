@@ -9,7 +9,9 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <h1>Welcome {{session['first_name']}} {{session['last_name']}}</h1>
-    <a class="btn btn-primary" href="/logout" role="button">Log out</a>
+    <div class="container">
+        <h1>Welcome {{session['first_name']}} {{session['last_name']}}</h1>
+        <a class="btn btn-primary" href="/logout" role="button">Log out</a>   
+    </div>
 </body>
 </html>

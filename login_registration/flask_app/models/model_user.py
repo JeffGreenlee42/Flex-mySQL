@@ -19,11 +19,12 @@ class User:
 
     @staticmethod
     def email_exists(new_email):
-        query = """SELECT email FROM users WHERE new_email = email;"""
-        result = connectToMySQL(db).query_db(query, new_email)
-        if result == False:
-            return False
-        return True
+        new_email = {
+            'new_email': new_email
+        }
+        query = "SELECT * FROM users WHERE email = %(new_email)s;"
+        return connectToMySQL(db).query_db(query, new_email)
+        
 
     @staticmethod
     def validate_user(new_user):
@@ -50,8 +51,6 @@ class User:
 
     @classmethod
     def add_user(cls, data):
-        # pw_hash = bcrypt.generate_password_hash(data['password'])
-        # print(f"in add_user: pw_hash is:: {pw_hash}/n")
         query = """INSERT INTO users (first_name, last_name, email, password) 
                    VALUES (%(first_name)s, %(last_name)s, %(email)s, %(pw_hash)s)"""
         result = connectToMySQL(db).query_db(query, data)
@@ -59,8 +58,8 @@ class User:
 
     @classmethod
     def get_by_email(cls, data):
-        query = "SELECT * FROM users where email = %(email)s"
+        query = "SELECT * FROM users where email = %(login_email)s"
         result = connectToMySQL(db).query_db(query, data)
         if not result:
             return False
-        return cls[result[0]]
+        return (cls(result[0]))
